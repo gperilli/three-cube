@@ -15,3 +15,8 @@ The Go Live feature in Visual Studio Code, or something like WAMP can be used to
 ## ``jsm/pcb-main.js``
 
 The code that loads the pcb image and animates groups of it is in this file. There is also a shuffling function that detects when all the groups are aligned at the zero position, and then shuffles the items withtin each group. Simultaneously there is a glow effect controlled by a sine wave oscillator.
+
+
+
+##
+npm i three
