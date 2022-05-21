@@ -1,9 +1,15 @@
-import * as THREE from './three/build/three.module.js';
+import * as THREE from 'three';
+//import * as THREE from '/js/three/build/three.module.js';
 import {WEBGL} from './WebGL.js';
-import {OBJLoader} from './three/examples/jsm/loaders/OBJLoader.js';
-import {MTLLoader} from './three/examples/jsm/loaders/MTLLoader.js';
-import {MeshSurfaceSampler} from './three/examples/jsm/math/MeshSurfaceSampler.js';
-import {OrbitControls} from './three/examples/jsm/controls/OrbitControls.js';
+
+import {OBJLoader} from '/node_modules/three/examples/jsm/loaders/OBJLoader.js';
+//import {OBJLoader} from './three/examples/jsm/loaders/OBJLoader.js';
+import {MTLLoader} from '/node_modules/three/examples/jsm/loaders/MTLLoader.js';
+//import {MTLLoader} from './three/examples/jsm/loaders/MTLLoader.js';
+import {MeshSurfaceSampler} from '/node_modules/three/examples/jsm/math/MeshSurfaceSampler.js';
+//import {MeshSurfaceSampler} from './three/examples/jsm/math/MeshSurfaceSampler.js';
+import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
+//import {OrbitControls} from './three/examples/jsm/controls/OrbitControls.js';
 
 import { degrees_to_radians } from './DegreesToRadians.js';
 
@@ -13,93 +19,7 @@ const mtlLoader = new MTLLoader();
 
 const MODELS_URL = 'models/'
 
-const diamondData = {
-  face_cloud: {
-    title: 'SaaS On Cloud',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'cloud.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_cloud.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-  },
-  face_space_ship: {
-    title: 'Space Systems',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'spaceship.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_spaceship.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-  },
-  face_plane: {
-    title: 'Air Systems',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'plane.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_plane.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
 
-  },
-  face_Leaf: {
-    title: 'Sustainability',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'leaf.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_leaf.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  },
-  face_kran: {
-    title: 'SaaS On The Asset',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'kran.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_kran.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  },
-  Face_lock: {
-    title: 'Security',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'shield.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_shield.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  },
-  face_plant: {
-    title: 'Ground Systems',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'factory.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_factory.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  },
-  face_Top: {
-    title: 'Safety',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'Helmet.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_helmet.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  },
-  face_chip: {
-    title: 'SaaS At The Edge',
-    icon: {
-      default: textureLoader.load(MODELS_URL + 'chip.jpg'),
-      active: textureLoader.load(MODELS_URL + 'active_chip.png')
-    },
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit animi minima ad, saepe possimus numquam. Sunt odio, ratione labore. Vitae ea omnis modi, fugiat, ducimus nulla illum minus culpa'
-
-
-  }
-}
 
 const DiamondModelView = function () {
   /** Setup global variables */
@@ -122,17 +42,13 @@ const DiamondModelView = function () {
   let isLocal;
   let _prev = 0;
   let animationInProgress = true;
-  let selectedObject;
-  let hoveredObject;
-  let selectedMode = false;
-  let startMoveX = 0;
-  let mouseDown = false;
+
   let direction = 'left';
   let diamondModelAnim = null;
   let diamondModel = null;
   let sampler = null;
   const lines = [];
-  let mousePosition = {};
+
 
   class Sparkle extends THREE.Vector3 {
     setup(origin, color) {
@@ -218,7 +134,7 @@ const DiamondModelView = function () {
         //camera = new THREE.PerspectiveCamera( 15, container.innerWidth / container.innerHeight, .1, 10000 );
         camera.position.y = 0;
         camera.position.x = 0;
-        camera.position.z = 0.5;
+        camera.position.z = 2;
       }
 
       function initLight() {
@@ -243,11 +159,7 @@ const DiamondModelView = function () {
       }
 
       function initEvents() {
-        //renderer.domElement.addEventListener("mousedown", mousedown, true);
-        //renderer.domElement.addEventListener("mouseup", mouseup, true);
-        //renderer.domElement.addEventListener("mousemove", mousemove, true);
         window.addEventListener("resize", onWindowResize);
-        //elPerspectiveItemClose.addEventListener("click", closeInfoPanel, true);
       }
 
       function initSparkles() {
@@ -266,97 +178,14 @@ const DiamondModelView = function () {
         scene.add( gridHelper ); 
       }
 
-      function mousedown(event) {
-        mouseDown = true
-        mousePosition = {
-          clientX: event.clientX,
-          clientY: event.clientY
-        }
-      }
 
-      function mouseup(event) {
-        mouseDown = false
-        if (mousePosition.clientX === event.clientX && mousePosition.clientY === event.clientY) {
-          //showInfoPanel(event)
-        }
-      }
-
-      function mousemove(event) {
-        if (!diamondModel || animationInProgress) return;
-
-        if (mouseDown) {
-          if (event.pageX < startMoveX) {
-            direction = "left"
-          } else if (event.pageX > startMoveX) {
-            direction = "right"
-          }
-          startMoveX = event.pageX;
-        }
-
-        const mouse = {
-          x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
-          y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
-        }
-        raycaster.setFromCamera(mouse, camera);
-        elTooltip.style.top = `${event.clientY - 30}px`
-        elTooltip.style.left = `${event.clientX + 5}px`
-        let intersects = raycaster.intersectObjects(diamondModel.children, true); //array
-        if (intersects.length > 0) {
-          if (!diamondData[intersects[0].object.name]) return;
-          if (hoveredObject && hoveredObject.object.name === intersects[0].object.name) return;
-          if (hoveredObject) {
-            if (selectedObject) {
-              updateHoveredObject()
-            } else {
-              let texture = diamondData[hoveredObject.object.name].icon.default;
-              hoveredObject.object.material.map = texture;
-              hoveredObject.active = false;
-              texture.dispose();
-            }
-          }
-          hoveredObject = intersects[0];
-
-          if (!animationInProgress) {
-            let texture = diamondData[hoveredObject.object.name].icon.active;
-            let name = diamondData[hoveredObject.object.name].title;
-            elTooltip.classList.add('show');
-            elTooltipInner.textContent = name
-            hoveredObject.object.material.map = texture;
-            texture.dispose();
-          }
-        } else {
-          if (hoveredObject) {
-            elTooltip.classList.remove('show');
-            elTooltipInner.textContent = ''
-            if (selectedObject) {
-              updateHoveredObject()
-            } else {
-              let texture = diamondData[hoveredObject.object.name].icon.default;
-              hoveredObject.object.material.map = texture;
-              hoveredObject.active = false;
-              texture.dispose();
-            }
-            hoveredObject = null;
-
-          }
-        }
-      }
-
-      function updateHoveredObject() {
-        if (hoveredObject.object.name !== selectedObject.object.name) {
-          let texture = diamondData[hoveredObject.object.name].icon.default;
-          hoveredObject.object.material.map = texture;
-          hoveredObject.active = false;
-          texture.dispose();
-        }
-      }
 
       function loadDiamondModelAnim() {
         objLoader.load(
-          MODELS_URL + "diamond.obj",
+          MODELS_URL + "cube.obj",
           (obj) => {
             diamondModelAnim = obj.children[0];
-            diamondModelAnim.geometry.scale(0.25, 0.25, 0.25);
+            diamondModelAnim.geometry.scale(1, 1, 1);
             diamondModelAnim.geometry.translate(0, -1, 0);
             diamondModelAnim.geometry.rotateX(0);
 
@@ -367,7 +196,7 @@ const DiamondModelView = function () {
       }
 
       function loadDiamondModel() {
-        mtlLoader.load(MODELS_URL + 'diamond.obj', function (materials) {
+        mtlLoader.load(MODELS_URL + 'cube.obj', function (materials) {
           materials.preload();
           objLoader.setMaterials(materials)
           objLoader.load(
