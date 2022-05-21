@@ -1,5 +1,5 @@
 # THREE-Cube
-![ThreeJS Cube Animation](/assets/three-cube.png)
+![ThreeJS Cube Animation](/three-cube.png)
 A background design / experiment in ThreeJS. Hosted on my homepage at: [https://gperilli.dev/graphicswork/three-cube/](https://gperilli.dev/graphicswork/pcb-cube/).
 
 ## Downloading and Setting Up A Development Workspace
